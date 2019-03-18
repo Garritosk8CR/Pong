@@ -35,6 +35,13 @@ class Ball extends Rect {
     }
 }
 
+class Player extends Rect {
+    constructor() {
+        super(20, 100)
+        this.score = 0
+    }
+}
+
 class Pong {
 
     constructor(canvas) {
@@ -47,6 +54,11 @@ class Pong {
         this.ball.vel.y = 100
         this.black = '#000'
         this.white = '#fff'
+        this.players = [
+            new Player,
+            new Player
+        ]
+        
         let lastTime;
         const callback = (milliSeconds) => {
             if(lastTime) {
