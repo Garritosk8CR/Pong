@@ -25,10 +25,29 @@ const white = '#fff'
 const canvas = document.getElementById('pong')
 const context = canvas.getContext('2d')
 const ball = new Ball;
+ball.pos.x = 100
+ball.pos.y = 50
+ball.vel.x = 100
+ball.vel.y = 100
 
-console.log(ball)
+let lastTime;
+function callback(milliSeconds) {
+    if(lastTime) {
+        update((milliSeconds - lastTime) / 1000)
+    }
+    lastTime = milliSeconds
+    requestAnimationFrame(callback)
+}
 
-context.fillStyle = black
-context.fillRect(0, 0, canvas.clientWidth, canvas.height)
-context.fillStyle = white
-context.fillRect(ball.pos.x, ball.pos.y, ball.size.x, ball.size.y)
+function update(deltaTime) {
+    ball.pos.x += ball.vel.x * deltaTime
+    ball.pos.y += ball.vel.y * deltaTime
+    context.fillStyle = black
+    context.fillRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = white
+    context.fillRect(ball.pos.x, ball.pos.y, ball.size.x, ball.size.y)
+    console.log(ball)
+}
+
+
+callback()
