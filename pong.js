@@ -31,4 +31,4 @@ console.log(ball)
 context.fillStyle = black
 context.fillRect(0, 0, canvas.clientWidth, canvas.height)
 context.fillStyle = white
-context.fillRect(0, 0, 10, 10)
+context.fillRect(ball.pos.x, ball.pos.y, ball.size.x, ball.size.y)
