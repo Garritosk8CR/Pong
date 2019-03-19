@@ -58,7 +58,16 @@ class Pong {
             new Player,
             new Player
         ]
-        
+        this.player_1 = this.players[0]
+        this.player_2 = this.players[1]
+        //start position
+        this.player_1.pos.x = 40
+        this.player_2.pos.x = this._canvas.width - 40
+        //set center
+        this.players.forEach(player => {
+            player.pos.y = this._canvas.height / 2
+        })
+
         let lastTime;
         const callback = (milliSeconds) => {
             if(lastTime) {
@@ -74,6 +83,7 @@ class Pong {
         this._context.fillStyle = this.black
         this._context.fillRect(0, 0, this._canvas.width, this._canvas.height)
         this.drawRect(this.ball)
+        this.players.forEach( player => this.drawRect(player) )
     }
 
     drawRect(rect) {
